@@ -2,6 +2,7 @@
 #define __BYTECODEGENERATOR 1
 
 #include <string>
+#include <stack>
 #include <vector>
 #include <iomanip>
 #include <algorithm>
@@ -18,7 +19,8 @@ namespace Generator
   {
 
     protected:
-      GENERATORSTATE state = DEFAULT;
+      GENERATORSTATE defaultState = DEFAULT;
+      std::stack<GENERATORSTATE> stateStack;
       std::string instructionBuffer;
       std::string outputBuffer;
 
@@ -30,7 +32,7 @@ namespace Generator
       ByteCode();
       ~ByteCode();
       void setState(GENERATORSTATE state);
-      void resetState();
+      void popState();
       void compile();
       void incrementInstructionCount(int amt);
       void emitSection(std::string label);

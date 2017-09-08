@@ -26,5 +26,5 @@ Gambit::LocalDefinitionNode::compile(Generator::ByteCode* bcGenerator)
     this->valueNode->compile(bcGenerator);
   }
   bcGenerator->emit->setLocal(this->className, this->identifier);
-  bcGenerator->resetState();
+  bcGenerator->popState();
 }

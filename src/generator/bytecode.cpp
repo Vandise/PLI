@@ -14,13 +14,16 @@ Generator::ByteCode::~ByteCode()
 void
 Generator::ByteCode::setState(GENERATORSTATE state)
 {
-  this->state = state;
+  this->stateStack.push(state);
 }
 
 void
-Generator::ByteCode::resetState()
+Generator::ByteCode::popState()
 {
-  this->state = DEFAULT;
+  if (!this->stateStack.empty())
+  {
+    this->stateStack.pop();
+  }
 }
 
 void
@@ -81,5 +84,9 @@ Generator::ByteCode::addLiteral(std::string literal)
 GENERATORSTATE
 Generator::ByteCode::getState()
 {
-  return this->state;
+  if (this->stateStack.empty())
+  {
+    return this->defaultState;
+  }
+  return this->stateStack.top();
 }
