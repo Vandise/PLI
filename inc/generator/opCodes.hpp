@@ -15,7 +15,7 @@ enum OPCODE{
 {                                                                                               \
   std::stringstream instColStream;                                                              \
   instColStream << std::setw(7) << std::setfill('0') << this->bcGenerator->instructionCount;    \
-  instructions.append(instColStream.str()).append(" ").append(" ")                              \
+  instructions.append("\t").append(instColStream.str()).append(" ").append(" ")                              \
     .append(opInstructions[opcode]).append("\n");                                               \
   this->bcGenerator->incrementInstructionCount(1);                                              \
 }
@@ -24,7 +24,7 @@ enum OPCODE{
 {                                                                                               \
   std::stringstream instColStream;                                                              \
   instColStream << std::setw(7) << std::setfill('0') << this->bcGenerator->instructionCount;    \
-  instructions.append(instColStream.str()).append(" ")                                          \
+  instructions.append("\t").append(instColStream.str()).append(" ")                                          \
     .append(" ")                                                                                \
     .append(opInstructions[opcode]).append(" ")                                                 \
       .append(operand1).append("\n");                                                           \
@@ -35,7 +35,7 @@ enum OPCODE{
 {                                                                                               \
   std::stringstream instColStream;                                                              \
   instColStream << std::setw(7) << std::setfill('0') << this->bcGenerator->instructionCount;    \
-  instructions.append(instColStream.str()).append(" ")                                          \
+  instructions.append("\t").append(instColStream.str()).append(" ")                                          \
   .append(" ")                                                                                  \
     .append(opInstructions[opcode]).append(" ")                                                 \
     .append(" ").append(operand1).append(" ")                                                   \

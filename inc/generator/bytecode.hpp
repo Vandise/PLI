@@ -33,7 +33,7 @@ namespace Generator
       ~ByteCode();
       void setState(GENERATORSTATE state);
       void popState();
-      void compile();
+      std::string compile();
       void incrementInstructionCount(int amt);
       void emitSection(std::string label);
       void pushBuffer(std::string instructions);
