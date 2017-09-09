@@ -25,7 +25,6 @@ int main( const int argc, const char **argv )
 
     IO::Binary file(bcGenerator->compile());
     file.exportBuffer();
-    file.import();
 
     delete(bcGenerator);
     delete(driver);
