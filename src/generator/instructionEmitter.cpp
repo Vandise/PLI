@@ -26,6 +26,19 @@ Generator::InstructionEmitter::pushInteger(int value)
 }
 
 void
+Generator::InstructionEmitter::pushString(std::string value)
+{
+  std::string instructions;
+  int x = this->bcGenerator->addLiteral(value);
+  EMIT_1(PUSH_STRING, std::to_string(x));
+  if (bcGenerator->getState() == DEFAULT)
+  {
+    EMIT_0(POP);
+  }
+  this->bcGenerator->pushBuffer(instructions);
+}
+
+void
 Generator::InstructionEmitter::setLocal(std::string className, std::string identifier)
 {
   int x = this->bcGenerator->addLiteral(identifier);

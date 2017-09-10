@@ -46,6 +46,11 @@ float_num ({digit}+\.{digit}+)
                       yylval->sval = new std::string(yytext);
                       return( token::T_IDENTIFIER ); 
                     }
+\"[^"]*\"           {
+                      yylval->sval = new std::string(yytext);
+                      yylval->sval->erase(remove(yylval->sval->begin(), yylval->sval->end(), '\"' ), yylval->sval->end());
+                      return( token::T_STRING );
+                    }
 {integer}           {
                       yylval->ival = (atoi(yytext));
                       return( token::T_INTEGER );

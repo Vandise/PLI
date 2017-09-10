@@ -29,8 +29,6 @@ IO::Binary::import()
   os << file.rdbuf();
   buffer = os.str();
 
-  std::cout << buffer << std::endl << std::endl;
-
   //this->fileContents = this->hexToString(buffer);
   this->fileContents = buffer;
   file.close();

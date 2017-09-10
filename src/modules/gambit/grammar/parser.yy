@@ -47,6 +47,7 @@
 
 %token                   END          0  "end of file"
 %token       <ival>      T_INTEGER
+%token       <sval>      T_STRING
 %token       <sval>      T_CONSTANT
 %token       <sval>      T_IDENTIFIER
 %token                   T_BIND
@@ -94,6 +95,10 @@ Expression:
 Literals:
   T_INTEGER                           {
                                         $$ = new Gambit::LiteralNode($1, INTEGER);
+                                      }
+  | T_STRING                          {
+                                        $$ = new Gambit::LiteralNode(*$1, STRING);
+                                        delete($1);
                                       }
   ;
 
