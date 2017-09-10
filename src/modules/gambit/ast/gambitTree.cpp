@@ -15,7 +15,7 @@ Gambit::Tree::~Tree()
 void
 Gambit::Tree::pushNodes(std::vector<AST::Node*> nodes)
 {
-  
+
 }
 
 void
@@ -27,7 +27,7 @@ Gambit::Tree::pushNode(AST::Node *node)
 int
 Gambit::Tree::treeSize()
 {
-  return 0;
+  return this->nodes.size();
 }
 
 void

@@ -8,6 +8,7 @@ enum OPCODE{
   NOOP,
   PUSH_INTEGER,
   PUSH_STRING,
+  PUSH_ARRAY,
   SET_LOCAL,
   POP
 };

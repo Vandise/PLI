@@ -37,6 +37,7 @@
   #include "modules/gambit/ast/gambitTree.hpp"
   #include "modules/gambit/ast/literalNode.hpp"
   #include "modules/gambit/ast/localDefinitionNode.hpp"
+  #include "modules/gambit/ast/arrayNode.hpp"
 
   #undef yylex
   #define yylex scanner.yylex
@@ -52,6 +53,9 @@
 %token       <sval>      T_IDENTIFIER
 %token                   T_BIND
 %token                   T_ASSIGN
+%token                   T_OPEN_BRACKET
+%token                   T_CLOSE_BRACKET
+%token                   T_COMMA
 %token                   T_NEWLINE
 
 %union {
@@ -62,8 +66,8 @@
   AST::Node *node;
 }
 
-%type <tree>    Expressions
-%type <node>    Expression Literals LocalDefinition
+%type <tree>    Expressions Parameters
+%type <node>    Expression Literals LocalDefinition Array
 
 %%
 
@@ -90,6 +94,7 @@ Expressions:
 Expression:
     Literals
   | LocalDefinition
+  | Array
   ;
 
 Literals:
@@ -114,6 +119,30 @@ LocalDefinition:
                                         delete($1);
                                         delete($3);
                                       }
+  ;
+
+Array:
+  T_OPEN_BRACKET T_CLOSE_BRACKET    {
+                                      $$ = new Gambit::ArrayNode(nullptr);
+                                    }
+  | T_OPEN_BRACKET Parameters T_CLOSE_BRACKET {
+                                                $$ = new Gambit::ArrayNode($2);
+                                              }
+  ;
+
+Parameters:
+    Expression                      {
+                                      std::vector<AST::Node *> nodes;
+                                      nodes.push_back($1);
+                                      $$ = new Gambit::Tree(nodes);
+                                    }
+  | Parameters T_COMMA Expression   {
+                                      $1->pushNode($3);
+                                    }
+  |                                 {
+                                      std::vector<AST::Node *> nodes;
+                                      $$ = new Gambit::Tree(nodes);
+                                    }
   ;
 
 Terminator:

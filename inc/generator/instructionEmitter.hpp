@@ -21,6 +21,7 @@ namespace Generator
       InstructionEmitter(Generator::ByteCode* bcGenerator);
       void pushInteger(int value);
       void pushString(std::string value);
+      void pushArray(int elementCount);
       void setLocal(std::string className, std::string identifier);
   };
 

@@ -8,7 +8,7 @@
 namespace AST
 {
 
-  class Tree
+  class Tree : public Node
   {
 
     public:

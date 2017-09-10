@@ -46,3 +46,11 @@ Generator::InstructionEmitter::setLocal(std::string className, std::string ident
   EMIT_2(SET_LOCAL, className, std::to_string(x));
   this->bcGenerator->pushBuffer(instructions);
 }
+
+void
+Generator::InstructionEmitter::pushArray(int elementCount)
+{
+  std::string instructions;
+  EMIT_1(PUSH_ARRAY, std::to_string(elementCount));
+  this->bcGenerator->pushBuffer(instructions);
+}

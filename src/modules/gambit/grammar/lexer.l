@@ -58,6 +58,15 @@ float_num ({digit}+\.{digit}+)
 "="                 {
                       return( token::T_ASSIGN );
                     }
+"["                 {
+                      return( token::T_OPEN_BRACKET );
+                    }
+"]"                 {
+                      return( token::T_CLOSE_BRACKET );
+                    }
+","                 {
+                      return( token::T_COMMA );
+                    }
 "::"                {
                       return( token::T_BIND );
                     }
